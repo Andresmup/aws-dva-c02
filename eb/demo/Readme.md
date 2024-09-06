@@ -16,7 +16,7 @@ sudo systemctl start docker
 ```
 
 ```sh
-docker composer up
+docker compose up
 ```
 
 ## Install postgres
