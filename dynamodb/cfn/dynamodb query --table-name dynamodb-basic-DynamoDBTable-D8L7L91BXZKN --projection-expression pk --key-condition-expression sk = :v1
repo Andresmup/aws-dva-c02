@@ -1,0 +1,57 @@
+{
+    "Items": [
+        {
+            "pk": {
+                "S": "andres"
+            },
+            "sk": {
+                "S": "data"
+            }
+        },
+        {
+            "nationality": {
+                "S": "american"
+            },
+            "sk": {
+                "S": "frontend"
+            },
+            "pk": {
+                "S": "andres"
+            },
+            "title": {
+                "S": "Mr"
+            }
+        },
+        {
+            "nationality": {
+                "S": "spain"
+            },
+            "sk": {
+                "S": "data"
+            },
+            "pk": {
+                "S": "maria"
+            },
+            "title": {
+                "S": "Ms"
+            }
+        },
+        {
+            "nationality": {
+                "S": "canada"
+            },
+            "sk": {
+                "S": "backend"
+            },
+            "pk": {
+                "S": "pedro"
+            },
+            "title": {
+                "S": "Mr"
+            }
+        }
+    ],
+    "Count": 4,
+    "ScannedCount": 4,
+    "ConsumedCapacity": null
+}

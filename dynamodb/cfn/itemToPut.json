@@ -1,0 +1,15 @@
+{
+    "pk":  {
+      "S": "pedro"
+    },
+    "sk": {
+      "S": "backend"
+    }
+    ,
+    "title": {
+      "S": "Mr"
+    },
+    "nationality": {
+      "S": "canada"
+    }
+}
