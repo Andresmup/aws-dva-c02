@@ -1,0 +1,14 @@
+{
+  "first_name": {
+    "DataType": "String",
+    "StringValue": "Andres"
+  },
+  "last_name": {
+    "DataType": "String",
+    "StringValue": "Muñoz"
+  },
+  "age": {
+    "DataType": "Number",
+    "StringValue": "1" 
+  }
+}
