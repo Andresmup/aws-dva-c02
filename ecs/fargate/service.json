@@ -1,0 +1,22 @@
+{
+  "cluster": "ecs-fargate-basicECSCluster",
+  "launchType": "FARGATE",
+  "desiredCount": 1,
+  "enableECSManagedTags": true,
+  "enableExecuteCommand": true,
+  "propagateTags": "SERVICE",
+  "serviceName": "app",
+  "taskDefinition": "app",
+  "networkConfiguration": {
+    "awsvpcConfiguration": {
+      "assignPublicIp": "ENABLED",
+      "securityGroups": [
+        "sg-092590ca2b3151a1e"
+      ],
+      "subnets": [
+        "subnet-0f7281e79acfe10b3",
+        "subnet-03586428c9f634bef"
+      ]
+    }
+  }
+}
