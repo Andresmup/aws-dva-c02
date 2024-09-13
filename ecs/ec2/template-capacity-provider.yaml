@@ -1,0 +1,34 @@
+AWSTemplateFormatVersion: 2010-09-09
+Parameters:
+  ASGArn:
+    Type: String
+    Default: arn:aws:autoscaling:us-east-1:604476232840:autoScalingGroup:2626f229-e351-4640-8a84-38ab878716eb:autoScalingGroupName/ecs-ec2-basic-ASG-mpz6oS0FdlEl
+  ClusterStack:
+    Type: String
+    Default: ecs-ec2-basic
+Resources:
+  MyCapacityProvider:
+    Type: AWS::ECS::CapacityProvider
+    Properties:
+        Name: MyCPECSBasic
+        AutoScalingGroupProvider:
+          AutoScalingGroupArn: !Ref ASGArn
+          ManagedScaling:
+              MaximumScalingStepSize: 3
+              MinimumScalingStepSize: 1
+              Status: ENABLED
+              TargetCapacity: 100
+          ManagedTerminationProtection: DISABLED 
+  ClusterCPAssociation:
+    # https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ecs-clustercapacityproviderassociations.html
+    Type: "AWS::ECS::ClusterCapacityProviderAssociations"
+    Properties:
+      Cluster:
+        Fn::ImportValue:
+          !Sub "${ClusterStack}ClusterName"
+      CapacityProviders:
+        - !Ref MyCapacityProvider
+      DefaultCapacityProviderStrategy:
+        - Base: 0
+          Weight: 1
+          CapacityProvider: !Ref MyCapacityProvider 
