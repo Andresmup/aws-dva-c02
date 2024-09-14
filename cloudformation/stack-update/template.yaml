@@ -1,0 +1,23 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Parameters:
+  BucketName:
+    Type: String
+    Default: andremup-stack-update-step1
+##################################################
+## STEP 1
+##################################################
+Resources:
+  S3Bucket:
+    # https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-s3-bucket.html
+    Type: AWS::S3::Bucket
+    Properties:
+      BucketName:
+        Ref: BucketName
+##################################################
+## STEP 2
+##################################################
+#  MyEC2Instance: 
+#    Type: AWS::EC2::Instance
+#    Properties: 
+#      ImageId: "ami-0182f373e66f89c85"
+#      InstanceType: t2.micro
