@@ -1,0 +1,11 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Resources:
+  S3Stack:
+    Type: AWS::CloudFormation::Stack
+    Properties:
+      TemplateURL: https://andresmup-nested-stack-storage.s3.amazonaws.com/template-s3.yaml
+
+  EC2Stack:
+    Type: AWS::CloudFormation::Stack
+    Properties:
+      TemplateURL: https://andresmup-nested-stack-storage.s3.amazonaws.com/template-ec2.yaml
