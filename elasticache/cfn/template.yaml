@@ -1,0 +1,62 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Parameters:
+  InstanceType:
+    Type: String
+    Default: t3.micro
+  ImageId:
+    Type: String
+    Default: ami-0182f373e66f89c85
+  VpcId:
+    Type: String
+    Default: vpc-0b44a2428eb1e2f07
+  SubnetId:
+    Type: String
+    Default: "subnet-0f7281e79acfe10b3,subnet-03586428c9f634bef"
+  SecurityGroupId:
+    Type: String
+    Default: sg-074f7644096687db3
+Resources:
+  ElasticCache:
+    Type: AWS::ElastiCache::ServerlessCache
+    Properties:
+      Description: "My ElastiCache"
+      Engine: "Redis"
+      MajorEngineVersion: 7
+      SecurityGroupIds: !Split [",", !Ref SecurityGroupId]
+      ServerlessCacheName: "MyCache"
+      SubnetIds: !Split [",", !Ref SubnetId]
+  SSMRole:
+    Type: AWS::IAM::Role
+    Properties:
+      AssumeRolePolicyDocument:
+        Version: '2012-10-17'
+        Statement:
+          - Effect: Allow
+            Principal:
+              Service: ec2.amazonaws.com
+            Action: sts:AssumeRole
+      ManagedPolicyArns:
+        - arn:aws:iam::aws:policy/AmazonSSMManagedInstanceCore
+  EC2InstanceProfile:
+    Type: AWS::IAM::InstanceProfile
+    Properties:
+      Roles:
+        - !Ref SSMRole
+  MyEC2Instance: 
+    Type: AWS::EC2::Instance
+    Properties: 
+      IamInstanceProfile: !Ref EC2InstanceProfile
+      InstanceType: !Ref InstanceType
+      ImageId: !Ref ImageId
+      NetworkInterfaces:
+        - DeviceIndex: 0
+          SubnetId: !Select [1, !Split [",", !Ref SubnetId]]
+          AssociatePublicIpAddress: true
+          GroupSet:
+            - !Ref SecurityGroupId
+          DeleteOnTermination: true
+      UserData:
+        Fn::Base64: |
+          #!/bin/bash
+          sudo yum update -y
+          sudo yum install redis6 -y
