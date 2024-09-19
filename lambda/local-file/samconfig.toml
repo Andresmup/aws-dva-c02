@@ -1,0 +1,4 @@
+version=0.1
+[default.deploy.parameters]
+s3_bucket = "dva-c02-andresmup-sam-lambda-test-bucket"
+region = "us-east-1"
