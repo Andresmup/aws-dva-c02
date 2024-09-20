@@ -1,0 +1,13 @@
+AWSTemplateFormatVersion : '2010-09-09'
+Transform: AWS::Serverless-2016-10-31
+Resources:
+  # https://docs.aws.amazon.com/serverless-application-model/latest/developerguide/sam-resource-function.html
+  LayersLambda:
+    Type: AWS::Serverless::Function
+    Properties:
+      Handler: main.handler
+      Runtime: python3.12
+      PackageType: Zip
+      CodeUri: code/
+      Layers:
+        - arn:aws:lambda:us-east-1:604476232840:layer:python-layers:2
