@@ -1,0 +1,13 @@
+version=0.1
+[default.deploy.parameters]
+s3_bucket = "dva-c02-andresmup-sam-lambda-test-bucket"
+region = "us-east-1"
+stack_name = "zip-package-py"
+resolve_s3 = true
+s3_prefix = "zip-package-py"
+confirm_changeset = true
+capabilities = "CAPABILITY_IAM"
+image_repositories = []
+[default.package.parameters]
+s3_bucket = "dva-c02-andresmup-sam-lambda-test-bucket"
+region = "us-east-1"
