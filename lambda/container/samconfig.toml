@@ -1,0 +1,9 @@
+version=0.1
+[default.package.parameters]
+s3_bucket = "dva-c02-andresmup-sam-lambda-test-bucket"
+region = "us-east-1"
+image_repository="604476232840.dkr.ecr.us-east-1.amazonaws.com/sam-container-images"
+[default.deploy.parameters]
+s3_bucket = "dva-c02-andresmup-sam-lambda-test-bucket"
+region = "us-east-1"
+image_repository="604476232840.dkr.ecr.us-east-1.amazonaws.com/sam-container-images"
